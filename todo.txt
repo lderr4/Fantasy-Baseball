@@ -1,0 +1,23 @@
+To Do:
+pitchers into database
+filters work
+    1. user clicks on a team to filter by
+    2. sql query to only show team
+    3. show result of query
+what to do with the initial loading screen (how should players be filtered initially)
+click on player name triggers modal
+Draft
+sort by age, hits, ab, etc (certain number of at bats?)
+make html look nicer/more original
+
+data -> array with entire database stored
+click on runs 
+causes post request
+sql query that  sorts by runs -> data becomes
+
+Draft   
+    create league menu
+    ability to draft player
+    indication of draft order 
+    
+SELECT CAST (((2*Doubles + 3*Triples + 4*homeRuns + (Hits-(Doubles+Triples+homeRuns))) / atBats) AS DECIMAL) + CAST ((Hits+walks+hitbypitch) / (atBats+walks+hitbypitch+sacFlies) AS DECIMAL)

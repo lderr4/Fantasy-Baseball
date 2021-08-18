@@ -1,0 +1,53 @@
+<%
+function calcOPS(batter)
+{
+    var slug = (2*batter.doubles + 3*batter.triples + 4*batter.homeruns + (batter.hits - (batter.doubles + batter.triples + batter.homeruns)))/batter.atbats;
+    var obp = (batter.hits + batter.walks + batter.hitbypitch) / (batter.atbats + batter.walks + batter.hitbypitch + batter.sacflies);
+    var ops = slug+obp;
+    return ops;
+}
+
+
+
+
+
+    console.log('successful table');
+    console.log(data[0]);
+    var table = '';
+    
+    table = '<table class="table table-dark">';
+    table += '<thead><tr><form class = "" action="/filter_stats" method="post"><th scope="col">Rank</th>';
+    table += '<th scope="col">Name</th>';
+    table += '<th scope="col">Team</th>';
+    table += '<th scope="col">Position</th>';
+    table += '<th scope="col">Age</th>';
+    table += '<th scope="col">H/AB</th>';
+    table += '<th scope="col">AVG</th>';
+    table += '<th scope="col">Runs</th>';
+    table += '<th scope="col">Home Runs</th>';
+    table += '<th scope="col">RBIs</th>';
+    table += '<th scope="col">OPS</th>';
+    table += '<th scope="col">Stolen Bases</th>';
+    table += '</tr></form></thead><tbody>';
+    for(var i = 0; i < data.length; i++)
+    {
+        var rank = i+1;
+        table += '<tr><th scope="row">'+rank+'</th>'
+        table += '<td><button type="button" class="btn btn-info btn-lg open-modal" id = "'+rank+'"  data-id = "'+rank+'"  data-toggle = "modal">'+data[i].name+'</button></td>';
+        table += '<td>'+data[i].team+'</td>'
+        table += '<td>'+data[i].position+'</td>'
+        table += '<td>'+data[i].age+'</td>'
+        table += '<td>'+data[i].hits+'/'+data[i].atbats+'</td>'
+        table += '<td>'+data[i].baavg+'</td>'
+        table += '<td>'+data[i].runsscored+'</td>'
+        table += '<td>'+data[i].homeruns+'</td>'
+        table += '<td>'+data[i].rbis+'</td>'
+        table += '<td>'+data[i].ops+'</td>'
+        table += '<td>'+data[i].stolenbases+'</td>';
+
+        table += '</tr>'
+    }
+    table += '</tbody></table>';
+%> 
+<%- table %>
+

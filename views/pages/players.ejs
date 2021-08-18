@@ -1,0 +1,189 @@
+<%- include('../partials/header'); -%>
+<body>
+<div class="" style="background-color: #0f415c;">
+    <div class="container-fluid" style="color: white; padding: 2%; ">
+        <h1 style="text-align: center;">Players</h1>
+        <form class = "" action="/filter_players" method="post">
+            <input type="radio" id="batters" name="position" value="batters" checked = "checked">
+            <label for="batters">Batters</label>
+
+            <input type="radio" id="pitchers" name="position" value="pitchers">
+            <label for="pitchers">Pitchers</label>
+
+            <input type="radio" id="C" name="position" value="C">
+            <label for="C">C</label>
+
+            <input type="radio" id="1B" name="position" value="1B">
+            <label for="other">1B</label>
+
+            <input type="radio" id="2B" name="position" value="2B">
+            <label for="other">2B</label>
+
+            <input type="radio" id="3B" name="position" value="3B">
+            <label for="other">3B</label>
+
+            <input type="radio" id="SS" name="position" value="SS">
+            <label for="other">SS</label>
+
+            <input type="radio" id="2B/SS" name="position" value="2B/SS">
+            <label for="other">2B/SS</label>
+
+            <input type="radio" id="1B/3B" name="position" value="1B/3B">
+            <label for="other">1B/3B</label>
+
+            <input type="radio" id="OF" name="position" value="OF">
+            <label for="other">OF</label>
+
+            <input type="radio" id="DH" name="position" value="DH">
+            <label for="other">DH</label>
+        
+        <div>
+            <label for="sort">Stat Filter</label>
+            <select name="sort" id="sort">
+                <option value="none">None</option>
+                <option value="age">Age</option>
+                <option value="atBats">At Bats</option>
+                <option value="Hits">Hits</option>
+                <option value="Doubles">Doubles</option>
+                <option value="Triples">Triples</option>
+                <option value="homeRuns">Home Runs</option>
+                <option value="RunsScored">Runs</option>
+                <option value="RBIs">RBIs</option>
+                <option value="walks">Walks</option>
+                <option value="strikeouts">Strikeouts</option>
+                <option value="BaAVG">AVG</option>
+                <option value="OBP">OBP</option>
+                <option value="SLUG">SLUG</option>
+                <option value="OPS">OPS</option>
+                <option value="stolenBases">Stolen Bases</option>
+            </select>
+
+            <label for="team">Pro Team</label>
+            <select name="team" id="team">
+                <option value="All">All</option>
+                <option value="ARI">Ari</option>
+                <option value="ATL">Atl</option>
+                <option value="BAL">Bal</option>
+                <option value="BOS">Bos</option>
+                <option value="CHC">ChC</option>
+                <option value="CWS">ChW</option>
+                <option value="CIN">Cin</option>
+                <option value="CLE">Cle</option>
+                <option value="COL">Col</option>
+                <option value="DETY">Det</option>
+                <option value="HOU">Hou</option>
+                <option value="KC">KC</option>
+                <option value="LAA">LAA</option>
+                <option value="LAD">LAD</option>
+                <option value="MIA">Mia</option>
+                <option value="MIL">Mil</option>
+                <option value="MIN">Min</option>
+                <option value="NYM">NYM</option>
+                <option value="NYY">NYY</option>
+                <option value="OAK">Oak</option>
+                <option value="PHI">Phi</option>
+                <option value="PIT">Pit</option>
+                <option value="SD">SD</option>
+                <option value="SEA">Sea</option>
+                <option value="SF">SF</option>
+                <option value="STL">StL</option>
+                <option value="TB">TB</option>
+                <option value="TEX">Tex</option>
+                <option value="TOR">Tor</option>
+                <option value="WSH">Wsh</option>
+                <option value="FA">FA</option>
+            </select>
+            <label for = "Watch">Watch List</label>
+            <select name="Watch" id="Watch">
+                <option value="All">All</option>
+                <option value="On Watch List">On Watch List</option>
+                <option value="Not On Watch List">Not On Watch List</option>
+            </select>
+            <div>
+                <label class="form-label" for="customRange1">Example range</label>
+                <div class="range">
+                <input type="range" class="form-range" id="customRange1" />
+                </div>
+                
+                <input type="submit" style="float: right;" value = "Submit" name = "Submit">
+            </div>
+    </div>
+
+</form>
+<div>
+<%- include('../partials/table'), {data: data}; -%>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id = "modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id = "modal-title"></h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id = "modal-body">
+            
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><H6 style="font-size: x-large;">Player Bio</H6></li>
+                <li class="list-group-item">
+                    <H6 style="font-size: x-large;">Extra Stats</H6>
+                    <table style = "font-size: 10px; border: 1px solid black; border-collapse: collapse;" >
+                        <tr>
+                            <th>Doubles</th>
+                            <th>Triples</th> 
+                            <th>Walks</th>
+                            <th>Strikeouts</th>
+                            <th>Sac Bunts</th>
+                            <th>Sac Flies</th>
+                            <th>Hit By Pitch</th>
+                            <th>OBP</th>
+                            <th>SLUG</th>
+                          </tr>
+                          <tr>
+                            <td id="doubles"></td>
+                            <td id="triples"></td> 
+                            <td id = "walks"></td>
+                            <td id = "strikeouts"></td>
+                            <td id = "sacbunts"></td>
+                            <td id = "sacflies"></td>
+                            <td id = "hitbypitch"></td>
+                            <td id = "obp"></td>
+                            <td id = "slug"></td>
+                          </tr>
+                          
+                    </table>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script type="text/javascript">
+        $(document).on("click", ".open-modal", function () {
+        var rank = $(this).data('id');
+        console.log(rank);
+        //console.log(data[rank-1]);
+        var data = <%-JSON.stringify(data)%>;
+        console.log(data);
+        var player = data[rank-1];
+        var name = player.name;
+        console.log(player.name);
+        $('#modal-title').html(name);
+        $('#doubles').html(player.doubles);
+        $('#triples').html(player.triples);
+        $('#walks').html(player.walks);
+        $('#strikeouts').html(player.strikeouts);
+        $('#sacbunts').html(player.sacbunts);
+        $('#sacflies').html(player.sacflies);
+        $('#hitbypitch').html(player.hitbypitch);
+        $('#obp').html(player.obp);
+        $('#slug').html(player.slug);
+        $('#modal').modal('show');
+        });
+    </script>
+<%- include('../partials/footer'); -%>
